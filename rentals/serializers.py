@@ -1,16 +1,5 @@
 from rest_framework import serializers
-from .models import User, Bicycle, Rental
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'email', 'password']
-        extra_kwargs = {'password': {'write_only': True}}
-
-    def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        return user
+from .models import Bicycle, Rental
 
 
 class BicycleSerializer(serializers.ModelSerializer):
@@ -23,10 +12,14 @@ class RentalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rental
         fields = ['id', 'user', 'bicycle', 'start_time', 'end_time', 'cost']
+        read_only_fields = ['user', 'start_time']
 
     def validate(self, data):
-        user = data.get('user')
-        if Rental.objects.filter(user=user, end_time__isnull=True).exists():
+        user = self.context['request'].user
+        rental_id = self.instance.id if self.instance else None
+
+        if Rental.objects.filter(user=user, end_time__isnull=True).exclude(
+                id=rental_id).exists():
             raise serializers.ValidationError(
                 'У вас уже есть активная аренда.')
         return data

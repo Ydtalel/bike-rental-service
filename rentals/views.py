@@ -1,7 +1,9 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
-from .models import User, Bicycle, Rental
-from .serializers import UserSerializer, BicycleSerializer, RentalSerializer
+from .models import Bicycle, Rental
+from .serializers import BicycleSerializer, RentalSerializer
+from accounts.serializers import UserSerializer
+from accounts.models import User
 
 
 class UserViewSet(viewsets.ModelViewSet):

@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rentals',
     'accounts',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -63,16 +64,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bike_rental_service.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '<BD_NAME>',
+        'USER': '<BD_USER>',
+        'PASSWORD': '<BD_PASSWORD>',
+        'HOST': '<BD_HOST>',
+        'PORT': '<BD_PORT>',
     }
 }
+
 
 
 # Password validation
@@ -128,7 +130,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50000),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,

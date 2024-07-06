@@ -67,11 +67,11 @@ WSGI_APPLICATION = 'bike_rental_service.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '<BD_NAME>',
-        'USER': '<BD_USER>',
-        'PASSWORD': '<BD_PASSWORD>',
-        'HOST': '<BD_HOST>',
-        'PORT': '<BD_PORT>',
+        'NAME': 'mydb',
+        'USER': 'myuser',
+        'PASSWORD': 'mypassword',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 

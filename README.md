@@ -16,6 +16,7 @@ Bike Rental Service - это приложение для аренды велос
     ```
     git clone https://github.com/Ydtalel/bike-rental-service.git
     ```
+   `cd bike-rental-service`
 
 2. Постройте и запустите контейнеры:
     ```

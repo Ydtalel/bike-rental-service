@@ -6,3 +6,6 @@ migrate:
 
 stop:
 	docker-compose down
+
+tests:
+	docker-compose run --rm web pytest --cov=accounts --cov=rentals --cov-report=term-missing
